@@ -48,12 +48,25 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          @if (Auth::check())
+            @if (Auth::user()->role == 1)
+              <li><a href="/admin/dashboard" class="btn-admin nav-link">Kelola Admin</a></li> 
+            @else
+              <li><a href="/middle" class="btn-dashboard nav-link">Dashboard</a></li>
+            @endif          
+          @endif
+          @if (!Auth::check())
           <li><a href="login" class="active-bg">Login</a></li>
+          <li><a class="nav-link" href="register">Daftar</a></li> 
+          @else
+          <li><a class="btn-logout" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();" class="nav-link">Logout</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+          @endif
+          </li>
         </ul>
       </nav><!-- .navbar -->
 

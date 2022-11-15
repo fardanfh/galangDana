@@ -11,7 +11,7 @@
           <div class="col-xl-4 col-md-6">
               <article>
                   <div class="post-img">
-                      <img src="{{ asset('front/img/blog/blog-1.jpg') }}" alt="" class="img-fluid">
+                      <img src="{{ asset('images/program-images/'.$dProgram->photo) }}" alt="" class="img-fluid">
                   </div>
                   <p class="post-category">Kategori Program</p>
                   <h2 class="title">

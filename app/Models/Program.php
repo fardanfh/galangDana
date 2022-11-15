@@ -26,4 +26,14 @@ class Program extends Model
         return $start_date->diffInDays($end_date);
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'users_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
 }
