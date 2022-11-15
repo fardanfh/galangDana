@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Program;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProgramController extends Controller
 {
@@ -16,10 +18,17 @@ class ProgramController extends Controller
 
     public function index()
     {
-        $program = Program::orderBy('created_at', 'asc')->get();
-       
+        
 
-        return view('admin.program', compact('program'));
+    }
+
+    public function middle(){        
+
+        $program = Program::where('users_id', Auth::user()->id)->count();
+        $programPublished = Program::where('users_id', Auth::user()->id)->where('isPublished', 1)->count();
+        $programNotPublished = Program::where('users_id', Auth::user()->id)->where('isPublished', 0)->count();
+
+        return view('user.index', compact('program', 'programPublished', 'programNotPublished'));
 
     }
 
@@ -30,7 +39,8 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        //
+        $kategori = Kategori::all();
+        return view('user.createProgram', ['categories' => $kategori]);
     }
 
     /**
@@ -41,7 +51,23 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate( request() , [
+            'title' => ['required', 'max:100'],
+            'donation_target' => ['required', 'numeric'],
+            'brief_explanation' => ['required', 'max:200'],
+            'donation_target' => ['required', 'min:7'],
+            'description' => ['required'],
+            'shelter_account_number' => ['required'],
+        ]);
+
+       $program = Program::create($request->all());
+       if($request->hasFile('photo'))
+       {
+           $request->file('photo')->move('images/program-images/', $request->file('photo')->getClientOriginalName());
+           $program->photo = $request->file('photo')->getClientOriginalName();
+           $program->save();
+       }
+        return redirect('/program');
     }
 
     /**
