@@ -24,9 +24,11 @@
   <link href="{{ asset('front/vendor/aos/aos.css" rel="stylesheet') }}">
   <link href="{{ asset('front/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('front/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <!-- front Main CSS File -->
   <link href="{{ asset('front/css/main.css') }}" rel="stylesheet">
+  <link href="{{ asset('front/css/donasi.css') }}" rel="stylesheet">
 
 </head>
 
@@ -47,7 +49,8 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#hero">Home</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a class="nav-link" href="/konfirmasi">Konfirmasi Pendonasian</a></li>
           @if (Auth::check())
             @if (Auth::user()->role == 1)
               <li><a href="/admin/dashboard" class="btn-admin nav-link">Kelola Admin</a></li> 
@@ -56,8 +59,8 @@
             @endif          
           @endif
           @if (!Auth::check())
-          <li><a href="login" class="active-bg">Login</a></li>
-          <li><a class="nav-link" href="register">Daftar</a></li> 
+          <li><a href="/login" class="active-bg">Login</a></li>
+          <li><a class="nav-link" href="/register">Daftar</a></li> 
           @else
           <li><a class="btn-logout" href="{{ route('logout') }}"
             onclick="event.preventDefault();
@@ -77,67 +80,6 @@
   </header><!-- End Header -->
   <!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero">
-    <div class="container position-relative">
-      <div class="row gy-5" data-aos="fade-in">
-        <div class="col-lg-7 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-          <h2>Selamat datang di Web <span>Donasi Online</span></h2>
-          <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
-          <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started">Get Started</a>
-          </div>
-        </div>
-        <div class="col-lg-5 order-1 order-lg-2">
-          <img src="{{ asset('front/img/delivery.svg') }}" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
-        </div>
-      </div>
-    </div>
-
-    <div class="icon-boxes position-relative">
-      <div class="container position-relative">
-        <div class="row gy-4 mt-5">
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-easel"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Donasi</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-gem"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Amanah</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-geo-alt"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Bermanfaat</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-command"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">Membantu</a></h4>
-            </div>
-          </div>
-          <!--End Icon Box -->
-
-        </div>
-      </div>
-    </div>
-
-    </div>
-  </section>
-  <!-- End Hero Section -->
-
   <main id="main">
 
     @yield('main_konten')
@@ -156,6 +98,9 @@
   <script src="{{ asset('front/vendor/swiper/swiper-bundle.min.js') }}"></script>
   <script src="{{ asset('front/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
   <script src="{{ asset('front/vendor/php-email-form/validate.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- front Main JS File -->
   <script src="{{ asset('front/js/main.js') }}"></script>

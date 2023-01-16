@@ -40,14 +40,18 @@ class KategoriController extends Controller
     {
 
         $request->validate([
-            'category_name' => ['required', 'string', 'max:50'],
+            'category_name' => ['required','unique:categories', 'string', 'max:50'],
+        ],
+        [
+            'category_name.required' => 'Kategori belum di isi',
+            'category_name.unique' => 'Kategori sudah tersedia'
         ]);
 
         Kategori::create([
             'category_name' => $request->category_name
         ]);
 
-        return redirect('kategori')->withSuccess('Kategori Berhasil Ditambahkan');
+        return redirect('admin/kategori')->withSuccess('Kategori Berhasil Ditambahkan');
     }
 
     /**
@@ -93,6 +97,6 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         Kategori::destroy($id);
-        return redirect()->to('kategori');
+        return redirect()->to('admin/kategori');
     }
 }

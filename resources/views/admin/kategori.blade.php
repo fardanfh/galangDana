@@ -4,7 +4,7 @@
 @endsection
 @section('main_konten')
 <div class="d-sm-flex align-items-center justify-content-end mb-4">
-    <a href="/kategori/create" class="btn btn-primary">Tambah Kategori</a>
+    <a href="kategori/create" class="btn btn-primary">Tambah Kategori</a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">

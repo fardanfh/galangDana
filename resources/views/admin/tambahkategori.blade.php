@@ -22,7 +22,7 @@
                                     <h1 class="h4 text-gray-900 mb-2">Kategori Program Donasi</h1><br>
                                     <p class="mb-2 text-left">Nama Kategori : </p>
                                 </div>
-                                <form method="POST" action="/kategori">
+                                <form method="POST" action="{{route('kategori.store')}}">
                                     @csrf
                                     <div class="form-group">
                                         <input id="kategori" type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" autocomplete="category_name" autofocus>

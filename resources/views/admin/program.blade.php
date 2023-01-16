@@ -31,7 +31,7 @@
                                 <td>{{ $dProgram->donation_collected }}</td>
                                 <td>{{ $dProgram->time_is_up }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">Detail</a>
+                                    <a href="/admin/detail/{{$dProgram->id}}" class="btn btn-warning">Detail</a>
                                 </td>
                             </tr>   
                         @endforeach

@@ -36,7 +36,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="/admin/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -51,21 +51,21 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item {{ request()->is('admin/program') ? 'active' : '' }}">
-                <a class="nav-link" href="program">
+                <a class="nav-link" href="/admin/program">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Program</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item {{ request()->is('admin/kategori') ? 'active' : '' }}">
-                <a class="nav-link" href="kategori">
+                <a class="nav-link" href="/admin/kategori">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Kategori</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item {{ request()->is('admin/laporan') ? 'active' : '' }}">
-                <a class="nav-link" href="laporan">
+                <a class="nav-link" href="/admin/laporan">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Laporan</span></a>
             </li>

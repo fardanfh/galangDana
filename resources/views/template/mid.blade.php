@@ -51,7 +51,7 @@
               </div>
             </div>
             <ul class="dropdown-body">
-              <li><a href="https://github.com/rzlstprnma" target="_blank"><i class="la la-user"></i><span>My profile</span></a></li>
+              <li><a href="#"><i class="la la-user"></i><span>My profile</span></a></li>
               <li><a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">

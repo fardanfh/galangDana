@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donation;
 use App\Models\Kategori;
 use App\Models\Program;
 use Illuminate\Support\Carbon;
@@ -18,8 +19,10 @@ class ProgramController extends Controller
 
     public function index()
     {
-        
-
+        $info = Program::where('users_id', Auth::user()->id)->count();
+        $programs = Program::where('users_id', Auth::user()->id)->orderBy('isPublished', 'DESC')->get();
+        // if time is up, this destroy
+       return view('user.program', compact('programs', 'info'));
     }
 
     public function middle(){        
@@ -30,6 +33,13 @@ class ProgramController extends Controller
 
         return view('user.index', compact('program', 'programPublished', 'programNotPublished'));
 
+    }
+
+    public function detailprogram($id){
+        $program = Program::find($id);
+        //$devs = Development::all()->where('program_id', $program->id);
+        $donatur = Donation::where('program_id', $id)->count();
+        return view('user.detailprogram', compact('program','donatur'));
     }
 
     /**
@@ -87,9 +97,11 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function edit(Program $program)
+    public function edit($id)
     {
-        //
+        $categories = Kategori::all();
+        $program = Program::find($id);
+        return view('user.edit', compact('program', 'categories'));
     }
 
     /**
@@ -99,9 +111,18 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Program $program)
+    public function update(Request $request,$id)
     {
-        //
+        $program = Program::find($id);
+        $program->update($request->all());
+        if($request->hasFile('photo'))
+        {
+            $request->file('photo')->move('images/program-images/', $request->file('photo')->getClientOriginalName());
+            $program->photo = $request->file('photo')->getClientOriginalName();
+            $program->update();
+        }
+
+        return redirect('/program');
     }
 
     /**
@@ -110,8 +131,9 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Program $program)
+    public function destroy($id)
     {
-        //
+        Program::destroy($id);
+        return redirect()->back();
     }
 }

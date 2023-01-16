@@ -28,12 +28,24 @@ class Program extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'users_id');
+        return $this->belongsTo('App\Models\User', 'users_id');
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Models\Kategori');
     }
+
+   
+    public function donatur()
+    {
+        return $this->hasMany('App\Models\Donation')->orderBy('isVerified');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany('App\Models\Report');
+    }
+
 
 }
