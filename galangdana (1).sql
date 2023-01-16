@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2022 at 06:44 PM
+-- Generation Time: Jan 16, 2023 at 12:20 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.0.23
 
@@ -67,17 +67,31 @@ CREATE TABLE `developments` (
 CREATE TABLE `donations` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `program_id` int(11) NOT NULL,
-  `users_id` int(11) NOT NULL,
+  `users_id` int(11) DEFAULT NULL,
   `id_transaksi` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_donatur` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nominal_donasi` int(11) NOT NULL,
   `dukungan` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bukti_pembayaran` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bukti_pembayaran` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `isVerified` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `donations`
+--
+
+INSERT INTO `donations` (`id`, `program_id`, `users_id`, `id_transaksi`, `nama_donatur`, `email`, `nominal_donasi`, `dukungan`, `bukti_pembayaran`, `isVerified`, `created_at`, `updated_at`) VALUES
+(2, 6, NULL, '128002', 'Ilham', NULL, 25000, 'Cepat pulih', 'contoh.jpg', 1, '2023-01-15 05:00:59', '2023-01-15 05:01:16'),
+(5, 6, NULL, '128003', 'Donatur', NULL, 12000, 'ppp', 'Screenshot from 2023-01-08 14-46-52.png', 1, '2023-01-15 05:25:43', '2023-01-15 05:26:09'),
+(6, 6, NULL, '128006', 'Donatur', NULL, 15000, 'iiopiop', NULL, 0, '2023-01-15 05:27:50', '2023-01-15 05:27:50'),
+(7, 6, NULL, '128007', 'Donatur', NULL, 15000, 'rtrh', 'ss (2).png', 1, '2023-01-15 05:33:58', '2023-01-15 07:50:27'),
+(8, 6, NULL, '128008', 'Raihan', 'raihan@mail.com', 90000, 'ppp', NULL, 0, '2023-01-15 07:51:27', '2023-01-15 07:51:27'),
+(9, 6, NULL, '128009', 'Donatur', 'adit@mail.com', 50000, 'ytjtyj', 'ss (3).png', 1, '2023-01-15 11:12:05', '2023-01-15 11:15:50'),
+(10, 6, NULL, '128010', 'Fardan', 'fardanfh@gmail.com', 10000, 'cepat pulih', 'ss.png', 1, '2023-01-16 02:40:37', '2023-01-16 02:41:21'),
+(11, 6, NULL, '128011', 'Donatur', NULL, 40000, 'p', NULL, 0, '2023-01-16 03:16:48', '2023-01-16 03:16:48');
 
 -- --------------------------------------------------------
 
@@ -181,10 +195,10 @@ CREATE TABLE `programs` (
 --
 
 INSERT INTO `programs` (`id`, `users_id`, `category_id`, `title`, `photo`, `brief_explanation`, `donation_target`, `time_is_up`, `shelter_account_number`, `donation_collected`, `description`, `isPublished`, `isSelected`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Korban Bencana Alam Banjir', 'banjir.jpg', 'Kami sangat senang jika ada yang menyumbangakan sedikit hartanya, supaya orang-orang disini tidak kelaparan', 2000000, '2022-11-30', '999-999-999', 1500000, 'Banjir telah memporak-porandakan tempat tinggal Kami', 1, 1, '2022-11-09 05:11:50', NULL),
-(2, 2, 2, 'Anak yatim di Panti Asuhan', 'panti.jpg', 'Ayo berdonasi supaya Anak Yatim disini bisa merasakan makanan lagi.', 10000000, '2022-11-28', '99034-42-434', 100000, 'Sudah sekitar 7 hari 7 malam Anak-anak Panti Asuhan kami menahan rasa lapar. disini kehabisan makanan, kami perlu bantuan dari Anda untuk membeli makanan yang banyak untu para Anak yatim disini.', 1, 1, '2022-11-09 05:13:45', NULL),
-(3, 1, 1, 'Korban Tsunami di Dunia', 'tsunami.jpg', 'Kami sangat senang jika ada yang menyumbangakan sedikit hartanya, supaya orang-orang disini tidak kelaparan', 10000000, '2022-11-30', '999-999-992', 25000, 'Tsunami dahsyat telah memporak-porandakan tempat tinggal Kami', 1, 1, '2022-11-09 05:15:28', NULL),
-(4, 1, 1, 'Bencana Alam Hujan Api', 'pppp.jpg', 'Yu berdonasi kebaikan', 8000000, '2022-12-16', '899-5495-245', NULL, 'Bencana alam hujan api terjadi di luar dunia', 1, 0, '2022-11-15 10:26:51', '2022-11-15 10:26:51');
+(2, 2, 2, 'Anak yatim di Panti Asuhan', 'panti.jpg', 'Ayo berdonasi supaya Anak Yatim disini bisa merasakan makanan lagi.', 10000000, '2022-11-28', '99034-42-434', 100000, 'Sudah sekitar 7 hari 7 malam Anak-anak Panti Asuhan kami menahan rasa lapar. disini kehabisan makanan, kami perlu bantuan dari Anda untuk membeli makanan yang banyak untu para Anak yatim disini.', 0, 1, '2022-11-09 05:13:45', NULL),
+(4, 1, 1, 'Bencana Alam Hujan Api', 'pppp.jpg', 'Yu berdonasi kebaikan', 8000000, '2022-12-16', '899-5495-245', NULL, 'Bencana alam hujan api terjadi di luar dunia', 0, 0, '2022-11-15 10:26:51', '2022-11-15 10:26:51'),
+(5, 1, 1, 'Bencana Alam Gempa Bumi di Cianjur & Sekitarnya', 'gempa.jpg', 'Yu berdonasi', 12000000, '2022-12-31', '999-999-999', NULL, 'Gempa 5,6mg terjadi di kabupaten cianjur provinsi jawabarat', 0, 0, '2022-11-26 07:41:02', '2023-01-15 01:34:57'),
+(6, 1, 1, 'Gempa Cianjur', 'gempa.jpg', 'Yu berdonasi', 5000000, '2023-01-31', '999-999-999', 217000, 'sfdfsfesfesf', 1, 0, '2023-01-09 10:06:26', '2023-01-16 02:41:21');
 
 -- --------------------------------------------------------
 
@@ -315,7 +329,7 @@ ALTER TABLE `developments`
 -- AUTO_INCREMENT for table `donations`
 --
 ALTER TABLE `donations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -339,7 +353,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `reports`
